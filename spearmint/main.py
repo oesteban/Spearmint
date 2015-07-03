@@ -225,6 +225,9 @@ def get_options():
         raise Exception("config.json did not load properly. Perhaps a spurious comma?")
     options["config"]  = commandline_kwargs.config_file
 
+    return options, expt_dir
+
+def main(options, expt_dir):
 
     # Set sensible defaults for options
     options['chooser']  = options.get('chooser', 'default_chooser')
@@ -242,11 +245,6 @@ def get_options():
         sys.stderr.write("Cannot find experiment directory '%s'. "
                          "Aborting.\n" % (expt_dir))
         sys.exit(-1)
-
-    return options, expt_dir
-
-def main():
-    options, expt_dir = get_options()
 
     resources = parse_resources_from_config(options)
 
@@ -491,4 +489,4 @@ def print_diagnostics(chooser):
     best_job_fh.close()
 
 if __name__ == '__main__':
-    main()
+    main(*get_options())
