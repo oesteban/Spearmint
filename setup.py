@@ -28,4 +28,5 @@ setup(
               'spearmint.utils',
               'spearmint.utils.database',],
     long_description=read('README.md'),
+    entry_points= {'console_scripts': ['spearmint=spearmint.main:main']},
 )
